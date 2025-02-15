@@ -153,7 +153,7 @@ AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET')
 # you run `collectstatic`).
 STORAGES = {
     "default": {
-        "BACKEND": "django.core.files.storage.FileSystemStorage",
+        "BACKEND": 'storages.backends.s3boto3.S3Boto3Storage',
     },
     "staticfiles": {
         "BACKEND": 'storages.backends.s3boto3.S3Boto3Storage',
