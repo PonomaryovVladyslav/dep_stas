@@ -1,7 +1,7 @@
 import os
 
 DEBUG = False
-ALLOWED_HOSTS = ['3.73.130.252']
+ALLOWED_HOSTS = ['3.73.130.252', 'a-level-deploy.com']
 
 DATABASES = {
     'default': {
