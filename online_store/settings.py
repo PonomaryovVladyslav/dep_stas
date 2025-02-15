@@ -22,10 +22,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-9n)^k+@3$$#bjk8a$cc)6jz$+91br-d)9$68m=pftbk$pbq$od'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -77,18 +73,6 @@ WSGI_APPLICATION = 'online_store.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'module_3_db',
-        'USER': 'module_3_user',
-        'PASSWORD': 'mypass',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -150,3 +134,14 @@ TOKEN_EXPIRE_SECONDS = 6000
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': ("myapp.api.authentication.TokenExpireAuthentication",),
 }
+
+if os.environ.get('PROD'):
+    try:
+        from .settings_prod import *
+    except ImportError:
+        pass
+else:
+    try:
+        from .settings_local import *
+    except ImportError:
+        pass
